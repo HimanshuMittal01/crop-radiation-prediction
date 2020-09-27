@@ -1,0 +1,9 @@
+# Envionment
+env/
+.env
+
+# Data
+data/
+
+# Notebooks
+**/.ipynb_checkpoints/
