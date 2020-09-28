@@ -7,3 +7,4 @@ data/
 
 # Notebooks
 **/.ipynb_checkpoints/
+**/__pycache__/

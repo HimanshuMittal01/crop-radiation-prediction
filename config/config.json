@@ -1,0 +1,23 @@
+{
+    "input_filepath" : "data/prepared.xlsx",
+    "sheet_name"  : "Mustard",
+    "delimiter"   : ",",
+    "feature_cols": [
+        "GSR",
+        "CT"
+    ],
+    "target_cols" : [
+        "Rn"
+    ],
+
+    "num_folds"   : 10,
+    
+    "batch_size"  : 1024,
+    "shuffle"     : true,
+    "num_workers" : 8,
+
+    "problem_type": "regression",
+    "algorithm"   : "random_forest",
+    "scoring"     : "rmse",
+    "opt_direction": "minimize"
+}
