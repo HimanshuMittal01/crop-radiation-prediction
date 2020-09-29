@@ -1,0 +1,35 @@
+{
+    "input_filepath": "data/prepared.xlsx",
+    "sheet_name"    : "Mustard",
+    "delimiter"     : ",",
+    "feature_cols"  : [
+        "GSR",
+        "CT"
+    ],
+    "target_cols"   : [
+        "Rn"
+    ],
+    "num_features"  : 2,
+    "num_targets"   : 1,
+
+    "num_folds"     : 5,
+    "random_state"  : 42,
+    
+    "algo_mode"     : "torch_dnn",
+    "problem_type"  : "regression",
+    "hidden_layers" : [16,16],
+    "dropout_rate"  : 0.3,
+    "device"        : "cuda:0",
+
+    "optimizer"     : "adam",
+    "batch_size"    : 1024,
+    "shuffle"       : true,
+    "num_workers"   : 8,
+    "epochs"        : 1000,
+    "lr"            : 0.01,
+
+    "scoring"       : "rmse",
+    "opt_direction" : "minimize",
+    "num_opt_trials": 1,
+    "hyper_param_space": "rf_reg_small_1"
+}

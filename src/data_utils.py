@@ -26,7 +26,7 @@ def prepare_data(
     data.loc[:, "kfold"] = -1
     data = data.sample(frac=1).reset_index(drop=True)
 
-    kf = KFold(n_splits=num_folds, shuffle=False, random_state=random_state)
+    kf = KFold(n_splits=num_folds, shuffle=False, random_state=None)
 
     for f, (t_, v_) in enumerate(kf.split(data)):
         data.loc[v_, "kfold"] = f

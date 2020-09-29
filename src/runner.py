@@ -13,6 +13,7 @@ class Runner:
         batch_size :int,
         shuffle :bool,
         num_workers :int,
+        epochs :int,
         mode :str
         ):
         """Runner for performing experiments
@@ -23,6 +24,7 @@ class Runner:
         self.batch_size = batch_size
         self.shuffle = shuffle
         self.num_workers = num_workers
+        self.epochs = epochs
         self.mode = mode
 
     def get_algo_mode(self):
@@ -83,7 +85,7 @@ class Runner:
         del train_features, train_target, val_features, val_target
 
         # Fit the model
-        train_scores, valid_scores = model.fit(train_loader, valid_loader)
+        train_scores, valid_scores = model.fit(train_loader, valid_loader, self.epochs)
 
         # Return scores
         if return_scores=='all':

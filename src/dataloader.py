@@ -29,13 +29,13 @@ class RadiationDataset:
     def __getitem__(self, index):
         if self.mode=="ml_standalone":
             return {
-                "x" : self.features.iloc[index, :],
-                "y" : self.target.iloc[index, :]
+                "x" : self.features[index, :],
+                "y" : self.target[index, :]
             }
-        elif self.mode=="dl":
+        elif self.mode=="torch_dnn":
             return {
-                "x" : torch.tensor(self.features.iloc[index, :], dtype=torch.float),
-                "y" : torch.tensor(self.target.iloc[index, :], dtype=torch.float)
+                "x" : torch.tensor(self.features[index, :], dtype=torch.float),
+                "y" : torch.tensor(self.target[index, :], dtype=torch.float)
             }
     
     def _fix_features(self):
