@@ -23,11 +23,15 @@ class StandaloneModel(BaseModel):
         'gaussian_process'
     ]
 
-    def __init__(self, algorithm, problem_type, scoring, **kwargs):
+    def __init__(self, algorithm, problem_type, scoring, random_state=42, **kwargs):
         self.algorithm = algorithm.lower()
         self.problem_type = problem_type.lower()
         self.scoring = scoring
+        self.random_state = random_state
         self.params = kwargs
+
+        # Add random state to params
+        self.params.update({'random_state': self.random_state})
 
         # Initialize model
         self.model = self._create_model()

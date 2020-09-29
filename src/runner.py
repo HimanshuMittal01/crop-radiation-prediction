@@ -12,7 +12,8 @@ class Runner:
         target_cols : list,
         batch_size :int,
         shuffle :bool,
-        num_workers :int
+        num_workers :int,
+        mode :str
         ):
         """Runner for performing experiments
         """
@@ -22,6 +23,10 @@ class Runner:
         self.batch_size = batch_size
         self.shuffle = shuffle
         self.num_workers = num_workers
+        self.mode = mode
+
+    def get_algo_mode(self):
+        return self.mode
 
     def run_training(self, model, fold, return_scores='best', direction='minimize'):
         """
@@ -58,7 +63,7 @@ class Runner:
             dataset=RadiationDataset(
                 features = train_features,
                 target = train_target,
-                mode = "ml"
+                mode = self.mode
             ),
             batch_size=self.batch_size,
             shuffle=self.shuffle,
@@ -68,7 +73,7 @@ class Runner:
             dataset=RadiationDataset(
                 features = val_features,
                 target = val_target,
-                mode = "ml"
+                mode = self.mode
             ),
             batch_size=self.batch_size,
             shuffle=self.shuffle,
@@ -79,8 +84,8 @@ class Runner:
 
         # Fit the model
         train_scores, valid_scores = model.fit(train_loader, valid_loader)
-        print(f"Training done for fold {fold}!")
 
+        # Return scores
         if return_scores=='all':
             return train_scores, valid_scores
         elif return_scores=='best':

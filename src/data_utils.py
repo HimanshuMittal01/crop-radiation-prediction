@@ -6,7 +6,8 @@ def prepare_data(
     filepath :str,
     sheetname :str,
     delimiter :str = ',',
-    num_folds :int = 5
+    num_folds :int = 5,
+    random_state :int = 42
     ) -> pd.DataFrame:
     """Loads and prepares data
     Automatically detects format and load accordingly
@@ -25,7 +26,7 @@ def prepare_data(
     data.loc[:, "kfold"] = -1
     data = data.sample(frac=1).reset_index(drop=True)
 
-    kf = KFold(n_splits=num_folds, shuffle=False, random_state=None)
+    kf = KFold(n_splits=num_folds, shuffle=False, random_state=random_state)
 
     for f, (t_, v_) in enumerate(kf.split(data)):
         data.loc[v_, "kfold"] = f

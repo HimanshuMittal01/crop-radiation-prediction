@@ -1,23 +1,28 @@
 {
-    "input_filepath" : "data/prepared.xlsx",
-    "sheet_name"  : "Mustard",
-    "delimiter"   : ",",
-    "feature_cols": [
+    "input_filepath": "data/prepared.xlsx",
+    "sheet_name"    : "Mustard",
+    "delimiter"     : ",",
+    "feature_cols"  : [
         "GSR",
         "CT"
     ],
-    "target_cols" : [
+    "target_cols"   : [
         "Rn"
     ],
 
-    "num_folds"   : 10,
+    "num_folds"     : 10,
+    "random_state"  : 42,
     
-    "batch_size"  : 1024,
-    "shuffle"     : true,
-    "num_workers" : 8,
+    "algo_mode"     : "ml_standalone",
+    "problem_type"  : "regression",
+    "algorithm"     : "random_forest",
 
-    "problem_type": "regression",
-    "algorithm"   : "random_forest",
-    "scoring"     : "rmse",
-    "opt_direction": "minimize"
+    "batch_size"    : 1024,
+    "shuffle"       : true,
+    "num_workers"   : 8,
+
+    "scoring"       : "rmse",
+    "opt_direction" : "minimize",
+    "hyper_param_space": "rf_reg_small_1",
+    "num_opt_trials": 50
 }

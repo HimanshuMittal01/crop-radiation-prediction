@@ -10,8 +10,8 @@ class RadiationDataset:
     # Regression output
     # Works for both machine and deep learning frameworks
     """
-    DEFAULT_MODE = "ml"
-    AVAILABLE_MODES = ["ml","torch_dnn","torch_lstm"]
+    DEFAULT_MODE = "ml_standalone"
+    AVAILABLE_MODES = ["ml_standalone","torch_dnn","torch_lstm"]
 
     def __init__(self, features, target, mode="ml"):
         self.mode = mode.lower()
@@ -27,7 +27,7 @@ class RadiationDataset:
         return self.features.shape[0]
     
     def __getitem__(self, index):
-        if self.mode=="ml":
+        if self.mode=="ml_standalone":
             return {
                 "x" : self.features.iloc[index, :],
                 "y" : self.target.iloc[index, :]
