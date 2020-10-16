@@ -1,5 +1,13 @@
 # Predict net radiation for crops
 
+## Install dependancies
+Will add all steps soon
+
+```bash
+# For regression spline
+pip install --editable git+https://github.com/scikit-learn-contrib/py-earth@v0.2dev#egg=pyearth
+```
+
 ## How to run
 
 ```bash
