@@ -15,7 +15,7 @@
     
     "algo_mode"     : "ml_standalone",
     "problem_type"  : "regression",
-    "algorithm"     : "ridge",
+    "algorithm"     : "adaboost",
 
     "batch_size"    : 1024,
     "shuffle"       : true,
