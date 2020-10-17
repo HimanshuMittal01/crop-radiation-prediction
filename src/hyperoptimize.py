@@ -19,7 +19,7 @@ class HyperRange:
     def _fix_end(self):
         if self.step is None:
             return
-        self.end = self.low + self.step * ((self.high - self.low)//self.step)
+        self.high = self.low + self.step * ((self.high - self.low)//self.step)
 
 class HyperCategorical:
     def __init__(self, name, choices):
@@ -35,11 +35,22 @@ class MLHyperOptmizer:
         HyperCategorical('criterion', ['mse', 'mae']),
         HyperRange('min_samples_split', 2, 15, 'int', 1)
     }
-    
+    gb_reg_small_1 = {
+        HyperRange('n_estimators', 100, 1500, 'int', 100),
+        HyperRange('learning_rate', 0.001, 0.1, 'float'),
+        HyperRange('subsample', 0.8, 1, 'float'),
+        HyperRange('min_samples_split', 2, 15, 'int', 1)
+    }
+    ridge_reg_small_1 = {
+        HyperRange('alpha', 0.1, 20, 'float'),
+        HyperCategorical('solver', ['auto','sparse_cg','sag'])
+    }
     @staticmethod
     def get_super_space():
         super_space = {
-            "rf_reg_small_1": MLHyperOptmizer.rf_reg_small_1
+            "rf_reg_small_1": MLHyperOptmizer.rf_reg_small_1,
+            "gb_reg_small_1": MLHyperOptmizer.gb_reg_small_1,
+            "ridge_reg_small_1": MLHyperOptmizer.ridge_reg_small_1
         }
 
         return super_space
@@ -60,8 +71,10 @@ class MLHyperOptmizer:
         for hrange in  params:
             if isinstance(hrange, HyperRange):
                 if hrange.dtype=='int':
-                    optuna_space[hrange.name] = trial.suggest_int(hrange.name, hrange.low, hrange.high, hrange.step, hrange.log)
+                    optuna_space[hrange.name] = trial.suggest_int(name=hrange.name, low=hrange.low, high=hrange.high, step=hrange.step, log=hrange.log)
                 elif hrange.dtype=='float':
+                    optuna_space[hrange.name] = trial.suggest_float(name=hrange.name, low=hrange.low, high=hrange.high, step=hrange.step, log=hrange.log)
+                else:
                     pass
             elif isinstance(hrange, HyperCategorical):
                 optuna_space[hrange.name] = trial.suggest_categorical(hrange.name, hrange.choices)

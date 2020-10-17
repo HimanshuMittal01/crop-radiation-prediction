@@ -1,0 +1,28 @@
+{
+    "input_filepath": "data/all_crops_merged.csv",
+    "sheet_name"    : "Mustard",
+    "delimiter"     : ",",
+    "feature_cols"  : [
+        "crop_chickpea", "crop_cowpea", "crop_maize", "crop_mustard",
+        "crop_rice", "GSR", "CT", "timesin", "timecos"
+    ],
+    "target_cols"   : [
+        "Rn"
+    ],
+
+    "num_folds"     : 10,
+    "random_state"  : 42,
+    
+    "algo_mode"     : "ml_standalone",
+    "problem_type"  : "regression",
+    "algorithm"     : "ridge",
+
+    "batch_size"    : 1024,
+    "shuffle"       : true,
+    "num_workers"   : 8,
+
+    "scoring"       : "rmse",
+    "opt_direction" : "minimize",
+    "hyper_param_space": "ridge_reg_small_1",
+    "num_opt_trials": 100
+}

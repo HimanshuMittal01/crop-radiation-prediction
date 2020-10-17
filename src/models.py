@@ -111,7 +111,7 @@ class StandaloneModel(BaseModel):
 
             return self.scoring(y, y_pred)
         else:
-            return seld.model.score(X, y)
+            return self.model.score(X, y)
 
 class DNNRegression(BaseModel):
     def __init__(self, problem_type, optimizer, scoring, num_features, num_targets, hidden_layers, device="cuda:0", **kwargs):
