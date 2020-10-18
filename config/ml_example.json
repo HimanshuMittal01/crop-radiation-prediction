@@ -1,6 +1,5 @@
 {
     "input_filepath": "data/all_crops_merged.csv",
-    "sheet_name"    : "Mustard",
     "delimiter"     : ",",
     "feature_cols"  : [
         "crop_chickpea", "crop_cowpea", "crop_maize", "crop_mustard",
@@ -16,13 +15,14 @@
     "algo_mode"     : "ml_standalone",
     "problem_type"  : "regression",
     "algorithm"     : "adaboost",
-
+    "loss":"square",
+    
     "batch_size"    : 1024,
     "shuffle"       : true,
     "num_workers"   : 8,
 
     "scoring"       : "rmse",
     "opt_direction" : "minimize",
-    "hyper_param_space": "ridge_reg_small_1",
+    "hyper_param_space": "adaboost_reg_small_1",
     "num_opt_trials": 100
 }

@@ -45,12 +45,17 @@ class MLHyperOptmizer:
         HyperRange('alpha', 0.1, 20, 'float'),
         HyperCategorical('solver', ['auto','sparse_cg','sag'])
     }
+    adaboost_reg_small_1 = {
+        HyperRange('n_estimators', 100, 1500, 'int', 100),
+        HyperRange('learning_rate', 0.001, 0.1, 'float')
+    }
     @staticmethod
     def get_super_space():
         super_space = {
             "rf_reg_small_1": MLHyperOptmizer.rf_reg_small_1,
             "gb_reg_small_1": MLHyperOptmizer.gb_reg_small_1,
-            "ridge_reg_small_1": MLHyperOptmizer.ridge_reg_small_1
+            "ridge_reg_small_1": MLHyperOptmizer.ridge_reg_small_1,
+            "adaboost_reg_small_1": MLHyperOptmizer.adaboost_reg_small_1
         }
 
         return super_space

@@ -162,7 +162,7 @@ class DNNRegression(BaseModel):
 
     def fit(self, train_loader, valid_loader, epochs):
         # TODO: Add callbacks
-
+        print(self.model)
         # Store loss for each epoch
         all_train_evals = []
         all_valid_evals = []
