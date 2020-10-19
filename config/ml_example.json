@@ -14,8 +14,7 @@
     
     "algo_mode"     : "ml_standalone",
     "problem_type"  : "regression",
-    "algorithm"     : "adaboost",
-    "loss":"square",
+    "algorithm"     : "xgboost",
     
     "batch_size"    : 1024,
     "shuffle"       : true,
@@ -23,6 +22,6 @@
 
     "scoring"       : "rmse",
     "opt_direction" : "minimize",
-    "hyper_param_space": "adaboost_reg_small_1",
-    "num_opt_trials": 100
+    "hyper_param_space": "xgboost_reg_small_1",
+    "num_opt_trials": 1000
 }

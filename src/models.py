@@ -1,5 +1,5 @@
 from tqdm import tqdm
-
+import xgboost
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor, AdaBoostRegressor
 from sklearn.linear_model import Ridge, Lasso
 from sklearn.svm import SVR
@@ -82,6 +82,8 @@ class StandaloneModel(BaseModel):
                 model = GaussianProcessRegressor(**self.params)
             elif self.algorithm=='adaboost':
                 model = AdaBoostRegressor(**self.params)
+            elif self.algorithm=='xgboost':
+                model = xgboost.XGBRegressor(**self.params)
             else:
                 raise Exception(f"{self.algorithm} is not supported yet")
         else:

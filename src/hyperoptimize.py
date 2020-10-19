@@ -49,13 +49,22 @@ class MLHyperOptmizer:
         HyperRange('n_estimators', 100, 1500, 'int', 100),
         HyperRange('learning_rate', 0.001, 0.1, 'float')
     }
+    xgboost_reg_small_1 = {
+        HyperRange('n_estimators', 100, 600, 'int', 100),
+        HyperRange('eta', 0.01, 0.3, 'float'),
+        HyperRange('min_child_weight', 1, 15, 'int', 1),
+        HyperRange('max_depth', 1, 31, 'int', 2),
+        HyperRange('gamma', 0, 0.1, 'float', 0.01),
+        HyperRange('subsample', 0.8, 1, 'float')
+    }
     @staticmethod
     def get_super_space():
         super_space = {
             "rf_reg_small_1": MLHyperOptmizer.rf_reg_small_1,
             "gb_reg_small_1": MLHyperOptmizer.gb_reg_small_1,
             "ridge_reg_small_1": MLHyperOptmizer.ridge_reg_small_1,
-            "adaboost_reg_small_1": MLHyperOptmizer.adaboost_reg_small_1
+            "adaboost_reg_small_1": MLHyperOptmizer.adaboost_reg_small_1,
+            "xgboost_reg_small_1": MLHyperOptmizer.xgboost_reg_small_1
         }
 
         return super_space
