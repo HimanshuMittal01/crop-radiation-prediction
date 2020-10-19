@@ -55,7 +55,8 @@ class MLHyperOptmizer:
         HyperRange('min_child_weight', 1, 15, 'int', 1),
         HyperRange('max_depth', 1, 31, 'int', 2),
         HyperRange('gamma', 0, 0.1, 'float', 0.01),
-        HyperRange('subsample', 0.8, 1, 'float')
+        HyperRange('subsample', 0.5, 1, 'float'),
+        HyperRange('reg_lambda', 1e-3, 100, 'loguniform')
     }
     @staticmethod
     def get_super_space():
@@ -88,6 +89,8 @@ class MLHyperOptmizer:
                     optuna_space[hrange.name] = trial.suggest_int(name=hrange.name, low=hrange.low, high=hrange.high, step=hrange.step, log=hrange.log)
                 elif hrange.dtype=='float':
                     optuna_space[hrange.name] = trial.suggest_float(name=hrange.name, low=hrange.low, high=hrange.high, step=hrange.step, log=hrange.log)
+                elif hrange.dtype=='loguniform':
+                    optuna_space[hrange.name] = trial.suggest_loguniform(name=hrange.name, low=hrange.low, high=hrange.high)
                 else:
                     pass
             elif isinstance(hrange, HyperCategorical):

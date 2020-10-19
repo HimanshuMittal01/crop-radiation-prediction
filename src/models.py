@@ -84,6 +84,8 @@ class StandaloneModel(BaseModel):
                 model = AdaBoostRegressor(**self.params)
             elif self.algorithm=='xgboost':
                 model = xgboost.XGBRegressor(**self.params)
+            elif self.algorithm=='xgboost_rf':
+                model = xgboost.XGBRFRegressor(**self.params)
             else:
                 raise Exception(f"{self.algorithm} is not supported yet")
         else:

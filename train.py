@@ -9,6 +9,7 @@ from src.runner import Runner
 from src.hyperoptimize import MLHyperOptmizer
 
 def objective_function(trial, params, config, runner):
+    all_train_scores = []
     all_valid_scores = []
     for fold in range(config.get('num_folds')):
         # Creating hyper parameters grid in optuna space
@@ -25,10 +26,14 @@ def objective_function(trial, params, config, runner):
             direction=config.get('opt_direction')
         )
 
+        all_train_scores.append(train_scores)
         all_valid_scores.append(valid_scores)
 
+    avg_train_score = np.mean(all_train_scores)
     avg_valid_score = np.mean(all_valid_scores)
-    
+
+    # print(f"Train score: {avg_train_score}, Valid Score: {avg_valid_score}")
+    # return np.sqrt((avg_valid_score**2 + 5*(avg_valid_score-avg_train_score)**2))
     return avg_valid_score
 
 if __name__=='__main__':

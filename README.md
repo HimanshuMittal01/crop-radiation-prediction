@@ -20,3 +20,5 @@ $ python train.py --config "config/config.json"
 - [x] Add DNN model
 - [ ] Add more flexibiltiy in hyperparameters of deep learning models
 - [ ] Replace json with yaml
+- [ ] Create a parser for custom optimize fn
+- [ ] Add speed for xgboost training
