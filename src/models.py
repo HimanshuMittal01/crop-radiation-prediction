@@ -7,6 +7,7 @@ from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.ensemble import StackingRegressor
 
 from src.torch_models.dnn import _Core_DNNRegression
+from src.style_models.linear import LOWESS
 from src.optimizer import TorchOptimizer
 
 class BaseModel:
@@ -86,6 +87,8 @@ class StandaloneModel(BaseModel):
                 model = xgboost.XGBRegressor(**self.params)
             elif self.algorithm=='xgboost_rf':
                 model = xgboost.XGBRFRegressor(**self.params)
+            elif self.algorithm=='lowess':
+                model = LOWESS(**self.params)
             else:
                 raise Exception(f"{self.algorithm} is not supported yet")
         else:

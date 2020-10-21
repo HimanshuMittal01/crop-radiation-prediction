@@ -58,6 +58,9 @@ class MLHyperOptmizer:
         HyperRange('subsample', 0.5, 1, 'float'),
         HyperRange('reg_lambda', 1e-3, 100, 'loguniform')
     }
+    lowess_reg_small_1 = {
+        HyperRange('tau', 0.01, 100, 'float'),
+    }
     @staticmethod
     def get_super_space():
         super_space = {
@@ -65,7 +68,8 @@ class MLHyperOptmizer:
             "gb_reg_small_1": MLHyperOptmizer.gb_reg_small_1,
             "ridge_reg_small_1": MLHyperOptmizer.ridge_reg_small_1,
             "adaboost_reg_small_1": MLHyperOptmizer.adaboost_reg_small_1,
-            "xgboost_reg_small_1": MLHyperOptmizer.xgboost_reg_small_1
+            "xgboost_reg_small_1": MLHyperOptmizer.xgboost_reg_small_1,
+            "lowess_reg_small_1": MLHyperOptmizer.lowess_reg_small_1
         }
 
         return super_space
