@@ -5,6 +5,7 @@ from sklearn.linear_model import Ridge, Lasso
 from sklearn.svm import SVR
 from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.ensemble import StackingRegressor
+from sklearn.neural_network import MLPRegressor
 
 from src.torch_models.dnn import _Core_DNNRegression
 from src.style_models.linear import LOWESS
@@ -49,7 +50,12 @@ class StandaloneModel(BaseModel):
         'ridge',
         'lasso',
         'svr',
-        'gaussian_process'
+        'gaussian_process',
+        'adaboost',
+        'xgboost',
+        'xgboost_rf',
+        'lowess',
+        'mlp'
     ]
 
     def __init__(self, algorithm, problem_type, scoring, random_state=42, **kwargs):
@@ -89,6 +95,8 @@ class StandaloneModel(BaseModel):
                 model = xgboost.XGBRFRegressor(**self.params)
             elif self.algorithm=='lowess':
                 model = LOWESS(**self.params)
+            elif self.algorithm=='mlp':
+                model = MLPRegressor(**self.params)
             else:
                 raise Exception(f"{self.algorithm} is not supported yet")
         else:

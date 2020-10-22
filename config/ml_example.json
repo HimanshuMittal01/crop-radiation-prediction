@@ -14,14 +14,14 @@
     
     "algo_mode"     : "ml_standalone",
     "problem_type"  : "regression",
-    "algorithm"     : "lowess",
-    
+    "algorithm"     : "mlp",
+
     "batch_size"    : 1024,
     "shuffle"       : true,
     "num_workers"   : 8,
 
     "scoring"       : "rmse",
     "opt_direction" : "minimize",
-    "hyper_param_space": "lowess_reg_small_1",
+    "hyper_param_space": "mlp_reg_small_1",
     "num_opt_trials": 100
 }

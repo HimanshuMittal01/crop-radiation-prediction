@@ -61,6 +61,10 @@ class MLHyperOptmizer:
     lowess_reg_small_1 = {
         HyperRange('tau', 0.01, 100, 'float'),
     }
+    mlp_reg_small_1 = {
+        HyperRange('alpha', 0.0001, 1, 'float'),
+        HyperCategorical('activation', ['tanh','relu'])
+    }
     @staticmethod
     def get_super_space():
         super_space = {
@@ -69,7 +73,8 @@ class MLHyperOptmizer:
             "ridge_reg_small_1": MLHyperOptmizer.ridge_reg_small_1,
             "adaboost_reg_small_1": MLHyperOptmizer.adaboost_reg_small_1,
             "xgboost_reg_small_1": MLHyperOptmizer.xgboost_reg_small_1,
-            "lowess_reg_small_1": MLHyperOptmizer.lowess_reg_small_1
+            "lowess_reg_small_1": MLHyperOptmizer.lowess_reg_small_1,
+            "mlp_reg_small_1": MLHyperOptmizer.mlp_reg_small_1
         }
 
         return super_space
